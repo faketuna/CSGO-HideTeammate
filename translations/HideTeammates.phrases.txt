@@ -28,20 +28,20 @@
 	"HideT Client Enable All Map"
 	{
 		"en"			"{default}Hiding teammates across the {lightblue}entire map"
-		"jp"			"{lightblue}すべての{default}チームメイトを非表示にしました"
+		"jp"			"{lightblue}すべて{default}のチームメイトを非表示にしました"
 		"ru"			"{default}Скрытие тиммейтов сейчас {green}Включено {default}на {lightblue}Всей карте"
 	}
 	"HideT Client Wrong"
 	{
 		"#format"		"{1:d}"
 		"en"			"{red}Wrong distance input{default}, range must be between {lime}0{default}-{lime}{1}"
-		"jp"			"{red}入力された範囲が不正です{default}！ 使用可能な範囲: {lime}0{default}-{lime}{1}"
+		"jp"			"{red}入力された範囲が不正です!{default} 使用可能な範囲: {lime}0{default}-{lime}{1}"
 		"ru"			"{default}Скрытие тиммейтов. {red}Ошибка ввода{default}, Диапозон {lime}0{default}-{lime}{1}"
 	}
 	"HideT Client Disable"
 	{
 		"en"			"{red}Unhidden {default}all teammates"
-		"jp"			"{default}チームメイトを{red}表示します"
+		"jp"			"{default}すべてのチームメイトを{red}表示{default}します"
 		"ru"			"{default}Скрытие тиммейтов сейчас {red}Отключено"
 	}
 	"HideT Cookie Menu"
@@ -59,13 +59,13 @@
 	"HideT Menu Hide"
 	{
 		"en"			"Hide Teammates"
-		"jp"			"Hide Teammates"
+		"jp"			"チームメイトを非表示"
 		"ru"			"Спрятать союзников"
 	}
 	"HideT Menu Show"
 	{
 		"en"			"Show Teammates"
-		"jp"			"Show Teammates"
+		"jp"			"チームメイトを表示"
 		"ru"			"Показать союзников"
 	}
 	"HideT AdjustDesc"
@@ -73,7 +73,7 @@
 		"#format"		"{1:d}"
 		
 		"en"			"You can hide all teammates\nor within a distance\nUse\"!hide <value>\"\n *-1: Unhide\n *0: Hide all allies\n *from 1 to {1}: Distance"
-		"jp"			"すべてのもしくは特定の範囲の\nチームメイトを非表示するには\n\"!hide <数値>\" を使用します。\n *-1: で非表示\n *0: で全員を非表示\n *1 から {1}: で範囲指定"
+		"jp"			"すべてのもしくは特定の範囲の\nチームメイトを非表示にするには\n\"!hide <数値>\" を使用します。\n *-1 で全員を表示\n *0 で全員を非表示\n *1 から {1} で範囲を指定"
 		"ru"			"Вы можете скрыть союзников полностью\nили на определённой дистанции\nИспользуйте\"!hide <значение>\"\n *-1: Показать всех\n *0: Скрыть на всей карте\n *от 1 до {1}: На определенной дистанции"
 	}
 	"HideT Menu Distance"
@@ -89,5 +89,15 @@
 		"en"			"Distance: All Teammates"
 		"jp"			"範囲: すべてのチームメイト"
 		"ru"			"Дистанция: Вся Карта"
+	}
+	"HideT Menu Right Click Unhide Enabled"
+	{
+		"en"			"Temporary unhide with right click: Enabled"
+		"jp"			"右クリックで一時的な解除: 有効"
+	}
+	"HideT Menu Right Click Unhide Disabled"
+	{
+		"en"			"Temporary unhide with right click: Disabled"
+		"jp"			"右クリックで一時的な解除: 無効"
 	}
 }
