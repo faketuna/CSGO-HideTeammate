@@ -1,0 +1,93 @@
+"Phrases"
+{
+	"HideT Tag"
+	{
+		"en"			"{lightblue}[{green}Hide{lightblue}]"
+		"jp"			"{lightblue}[{green}Hide{lightblue}]"
+		"ru"			"{lightblue}[{green}HT{lightblue}]"
+	}
+	"HideT Disabled"
+	{
+		"en"			"{default}Hide command is currently {red}disabled"
+		"jp"			"{default}このコマンドは現在 {red}無効化{default}されています"
+		"ru"			"{default}Сейчас {red}отключено"
+	}
+	"HideT Wait"
+	{
+		"en"			"{orange}Please wait, your settings have not been loaded..."
+		"jp"			"{orange}設定をロード中です。少々お待ちください..."
+		"ru"			"{orange}Пожалуйста подождите пока ваши настройки загрузятся..."
+	}
+	"HideT Client Enable"
+	{
+		"#format"		"{1:d}"
+		"en"			"{default}Hiding teammates within {lightblue}{1} {default}units"
+		"jp"			"{default}チームメイトを範囲 {lightblue}{1} {default}unitsで非表示にしました"
+		"ru"			"{default}Скрытие тиммейтов сейчас {green}Включено {default}на дистанции {lightblue}{1}"
+	}
+	"HideT Client Enable All Map"
+	{
+		"en"			"{default}Hiding teammates across the {lightblue}entire map"
+		"jp"			"{lightblue}すべての{default}チームメイトを非表示にしました"
+		"ru"			"{default}Скрытие тиммейтов сейчас {green}Включено {default}на {lightblue}Всей карте"
+	}
+	"HideT Client Wrong"
+	{
+		"#format"		"{1:d}"
+		"en"			"{red}Wrong distance input{default}, range must be between {lime}0{default}-{lime}{1}"
+		"jp"			"{red}入力された範囲が不正です{default}！ 使用可能な範囲: {lime}0{default}-{lime}{1}"
+		"ru"			"{default}Скрытие тиммейтов. {red}Ошибка ввода{default}, Диапозон {lime}0{default}-{lime}{1}"
+	}
+	"HideT Client Disable"
+	{
+		"en"			"{red}Unhidden {default}all teammates"
+		"jp"			"{default}チームメイトを{red}表示します"
+		"ru"			"{default}Скрытие тиммейтов сейчас {red}Отключено"
+	}
+	"HideT Cookie Menu"
+	{
+		"en"			"Hide Teammates"
+		"jp"			"Hide Teammates"
+		"ru"			"Скрывать союзников"
+	}
+	"HideT Menu Title"
+	{
+		"en"			"Hide Teammates Menu"
+		"jp"			"チームメイトの非表示設定"
+		"ru"			"Меню Скрытия союзников"
+	}
+	"HideT Menu Hide"
+	{
+		"en"			"Hide Teammates"
+		"jp"			"Hide Teammates"
+		"ru"			"Спрятать союзников"
+	}
+	"HideT Menu Show"
+	{
+		"en"			"Show Teammates"
+		"jp"			"Show Teammates"
+		"ru"			"Показать союзников"
+	}
+	"HideT AdjustDesc"
+	{
+		"#format"		"{1:d}"
+		
+		"en"			"You can hide all teammates\nor within a distance\nUse\"!hide <value>\"\n *-1: Unhide\n *0: Hide all allies\n *from 1 to {1}: Distance"
+		"jp"			"すべてのもしくは特定の範囲の\nチームメイトを非表示するには\n\"!hide <数値>\" を使用します。\n *-1: で非表示\n *0: で全員を非表示\n *1 から {1}: で範囲指定"
+		"ru"			"Вы можете скрыть союзников полностью\nили на определённой дистанции\nИспользуйте\"!hide <значение>\"\n *-1: Показать всех\n *0: Скрыть на всей карте\n *от 1 до {1}: На определенной дистанции"
+	}
+	"HideT Menu Distance"
+	{
+		"#format"	"{1:d}"
+		
+		"en"			"Distance: {1}"
+		"jp"			"範囲: {1}"
+		"ru"			"Дистанция: {1}"
+	}
+	"HideT Menu All Map"
+	{
+		"en"			"Distance: All Teammates"
+		"jp"			"範囲: すべてのチームメイト"
+		"ru"			"Дистанция: Вся Карта"
+	}
+}
