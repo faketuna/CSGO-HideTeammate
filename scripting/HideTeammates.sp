@@ -16,10 +16,12 @@ ConVar sm_hide_enabled, sm_hide_maximum;
 
 Handle g_HideCookie;
 Handle g_Hide_EnableCookie;
+Handle g_Hide_RightClick_Cookie;
 bool g_HidePlayers[MAXPLAYERS+1][MAXPLAYERS+1];
 bool bEnabled = true;
 
 bool g_bHide[MAXPLAYERS+1];
+bool g_bRightClickUnHide[MAXPLAYERS+1];
 bool g_bIsHiding[MAXPLAYERS+1];
 int g_iHide[MAXPLAYERS+1];
 int g_iHideP2[MAXPLAYERS+1];
@@ -50,6 +52,7 @@ public void OnPluginStart()
 
     g_HideCookie = RegClientCookie("cookie_hide_teammates", "Hide Teammates", CookieAccess_Protected);
     g_Hide_EnableCookie = RegClientCookie("cookie_hide_teammates_enable", "Hide Teammates Enable", CookieAccess_Protected);
+    g_Hide_RightClick_Cookie = RegClientCookie("coockie_hide_teammates_temp_unhide", "Hide Teammates Unhide Temporary", CookieAccess_Protected);
     SetCookieMenuItem(PrefMenu, 0, "Hide Teammates");
 
     for (int client = 1; client <= MaxClients; client++)
@@ -119,6 +122,18 @@ public void OnClientCookiesCached(int client)
     {
         g_iHide[client] = 0;
         g_iHideP2[client] = 0;
+    }
+
+    GetClientCookie(client, g_Hide_RightClick_Cookie, sCookieValue, sizeof(sCookieValue));
+
+    
+    if (StrEqual(sCookieValue, "1"))
+    {
+        g_bRightClickUnHide[client] = true;
+    }
+    else
+    {
+        g_bRightClickUnHide[client] = false;
     }
 }
 
@@ -370,7 +385,7 @@ void DisplaySettingsMenu(int client)
     
     char szEnable[512];
     FormatEx(szEnable, sizeof(szEnable), "%T \n%T", g_bHide[client] ? "HideT Menu Show" : "HideT Menu Hide", client, "HideT AdjustDesc", client, sm_hide_maximum.IntValue);
-    prefmenu.AddItem(g_bHide[client] ? "disable" : "enable", szEnable);
+    prefmenu.AddItem(g_bHide[client] ? "ht_disable" : "ht_enable", szEnable);
     
     if (g_bHide[client])
     {
@@ -392,6 +407,11 @@ void DisplaySettingsMenu(int client)
             case 1000: { prefmenu.AddItem("hdt_0", szItem);}
             default: { prefmenu.AddItem("hdt_0", szItem);}
         }
+
+        char szRightClick[512];
+        FormatEx(szRightClick, sizeof(szRightClick), "%t", g_bRightClickUnHide[client] ? "HideT Menu Right Click Unhide Enabled" : "HideT Menu Right Click Unhide Disabled");
+        prefmenu.AddItem(g_bRightClickUnHide[client] ? "RightClick_disable" : "RightClick_enable", szRightClick);
+        
     }
     
     prefmenu.ExitBackButton = true;
@@ -402,16 +422,16 @@ public int PrefMenuHandler(Menu prefmenu, MenuAction actions, int client, int it
 {
     if (actions == MenuAction_Select)
     {
-        char preference[9];
+        char preference[32];
         
         GetMenuItem(prefmenu, item, preference, sizeof(preference));
         
-        if (StrEqual(preference, "disable"))
+        if (StrEqual(preference, "ht_disable"))
         {
             SetClientHide(client, false, g_iHide[client], true);
             CPrintToChat(client,"%t %t", "HideT Tag", "HideT Client Disable");
         }
-        else if (StrEqual(preference, "enable"))
+        else if (StrEqual(preference, "ht_enable"))
         {
             SetClientHide(client, true, g_iHide[client], true);
             if (g_iHide[client] == 0)
@@ -419,7 +439,7 @@ public int PrefMenuHandler(Menu prefmenu, MenuAction actions, int client, int it
             else
                 CPrintToChat(client,"%t %t", "HideT Tag", "HideT Client Enable", g_iHide[client]);
         }
-        
+
         if (StrContains(preference, "hdt") >= 0)
         {
             SetClientHide(client, true, StringToInt(preference[4]), true);
@@ -427,6 +447,17 @@ public int PrefMenuHandler(Menu prefmenu, MenuAction actions, int client, int it
                 CPrintToChat(client,"%t %t", "HideT Tag", "HideT Client Enable All Map");
             else
                 CPrintToChat(client,"%t %t", "HideT Tag", "HideT Client Enable", g_iHide[client]);
+        }
+
+        if (StrEqual(preference, "RightClick_disable"))
+        {
+            SetClientCookie(client, g_Hide_RightClick_Cookie, "0");
+            g_bRightClickUnHide[client] = false;
+        }
+        else if (StrEqual(preference, "RightClick_enable"))
+        {
+            SetClientCookie(client, g_Hide_RightClick_Cookie, "1");
+            g_bRightClickUnHide[client] = true;
         }
         DisplaySettingsMenu(client);
     }
@@ -480,6 +511,9 @@ OnButtonPress(client, button)
     if(!g_bIsHiding[client]) {
         return;
     }
+    if(!g_bRightClickUnHide[client]){
+        return;
+    }
     SetClientHide(client, false, g_iHide[client], false);
     return;
 }
@@ -490,6 +524,9 @@ OnButtonRelease(client, button)
         return;
     }
     if(!g_bIsHiding[client]) {
+        return;
+    }
+    if(!g_bRightClickUnHide[client]){
         return;
     }
     SetClientHide(client, true, g_iHide[client], false);
