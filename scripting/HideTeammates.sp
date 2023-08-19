@@ -199,6 +199,7 @@ public void OnPlayerDeath(Event event, const char[] name, bool dontBroadcast)
 
 public Action Command_Hide(int client, int args)
 {
+    SetGlobalTransTarget(client);
     if (!IsClientInGame(client))
         return Plugin_Handled;
     
@@ -250,6 +251,7 @@ public Action Command_Hide(int client, int args)
 
 public Action Command_HideAll(int client, int args)
 { 
+    SetGlobalTransTarget(client);
     if (!IsClientInGame(client))
         return Plugin_Handled;
     
@@ -365,6 +367,7 @@ public void PrefMenu(int client, CookieMenuAction actions, any info, char[] buff
 
 void DisplaySettingsMenu(int client)
 {
+    SetGlobalTransTarget(client);
     if (!bEnabled)
     {
         CPrintToChat(client, "%t %t", "HideT Tag", "HideT Disabled");
@@ -420,6 +423,7 @@ void DisplaySettingsMenu(int client)
 
 public int PrefMenuHandler(Menu prefmenu, MenuAction actions, int client, int item)
 {
+    SetGlobalTransTarget(client);
     if (actions == MenuAction_Select)
     {
         char preference[32];
