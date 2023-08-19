@@ -52,7 +52,7 @@ public void OnPluginStart()
 
     g_HideCookie = RegClientCookie("cookie_hide_teammates", "Hide Teammates", CookieAccess_Protected);
     g_Hide_EnableCookie = RegClientCookie("cookie_hide_teammates_enable", "Hide Teammates Enable", CookieAccess_Protected);
-    g_Hide_RightClick_Cookie = RegClientCookie("coockie_hide_teammates_temp_unhide", "Hide Teammates Unhide Temporary", CookieAccess_Protected);
+    g_Hide_RightClick_Cookie = RegClientCookie("cookie_ht_temp_unhide", "Hide Teammates Unhide Temporary", CookieAccess_Protected);
     SetCookieMenuItem(PrefMenu, 0, "Hide Teammates");
 
     for (int client = 1; client <= MaxClients; client++)
@@ -127,9 +127,9 @@ public void OnClientCookiesCached(int client)
     GetClientCookie(client, g_Hide_RightClick_Cookie, sCookieValue, sizeof(sCookieValue));
 
     
-    if (StrEqual(sCookieValue, "1"))
+    if (!StrEqual(sCookieValue, ""))
     {
-        g_bRightClickUnHide[client] = true;
+        g_bRightClickUnHide[client] = view_as<bool>(StringToInt(sCookieValue));
     }
     else
     {
